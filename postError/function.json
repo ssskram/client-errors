@@ -1,7 +1,7 @@
 {
   "disabled": false,
   "bindings": [{
-      "authLevel": "system",
+      "authLevel": "admin",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req"

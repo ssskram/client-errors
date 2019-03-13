@@ -24,7 +24,7 @@ module.exports = async (context, req) => {
     })
 
     // follow up with full error message via baloo
-    fetch("https://baloo.azurewebsites.us/alert", {
+    fetch("https://baloo.azurewebsites.us/clientError", {
         method: 'POST',
         headers: new Headers({
             'Authorization': 'Bearer ' + process.env.BALOO,
