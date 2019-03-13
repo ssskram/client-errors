@@ -8,5 +8,30 @@ module.exports = async (context, req) => {
         status: 202
     }
 
-    // continue with logic here...
+    // broadcast alert via baloo
+    await fetch("https://baloo.azurewebsites.us/alert", {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + process.env.BALOO,
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+            appName: req.body.appName,
+            errorType: "Client",
+            countError: "1",
+            time: req.body.time
+        })
+    })
+
+    // follow up with full error message via baloo
+    fetch("https://baloo.azurewebsites.us/alert", {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + process.env.BALOO,
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+            errorMessage: req.body.errorMessage
+        })
+    })
 }
