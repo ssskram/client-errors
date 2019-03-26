@@ -9,7 +9,7 @@ module.exports = async (context, req) => {
     }
 
     // broadcast alert via baloo
-    await fetch("https://baloo.azurewebsites.us/alert", {
+    await fetch("https://baloo.azurewebsites.us/azMonitor/alert", {
         method: 'POST',
         headers: new Headers({
             'Authorization': 'Bearer ' + process.env.BALOO,
@@ -24,7 +24,7 @@ module.exports = async (context, req) => {
     })
 
     // follow up with full error message via baloo
-    fetch("https://baloo.azurewebsites.us/clientError", {
+    fetch("https://baloo.azurewebsites.us/azMonitor/clientError", {
         method: 'POST',
         headers: new Headers({
             'Authorization': 'Bearer ' + process.env.BALOO,
